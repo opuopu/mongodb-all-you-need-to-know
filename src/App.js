@@ -1,24 +1,50 @@
 import logo from './logo.svg';
 import './App.css';
+import { BrowserRouter,Switch,Route } from 'react-router-dom';
+import Header from './pages/header/Header';
+import Home from './pages/home/Home';
+import Adduser from './pages/adduser/Adduser';
+import Login from './pages/login/Login';
+import Privateroute from './pages/login/Privateroute';
+import Eventform from './pages/event/Eventform';
+import Firebaseuse from './hooks/Usefirebase';
+import authprovider from './context/authprovider';
+import Authprovider from './context/authprovider';
+import Event from './pages/ev/Event';
+
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+
+<Authprovider>
+  
+<BrowserRouter>
+  <Header></Header>
+  <Switch>
+
+<Route  path="/home">
+<Home></Home>
+
+
+</Route>
+<Route path="/adduser">
+<Adduser></Adduser>
+</Route>
+<Route path="/login">
+   <Login></Login>
+</Route>
+<Route path="/event">
+<Event></Event>
+</Route>
+<Privateroute path="/event/:id">
+  <Eventform></Eventform>
+   
+</Privateroute>
+  </Switch>
+  </BrowserRouter>
+</Authprovider>
+
+ 
   );
 }
 
